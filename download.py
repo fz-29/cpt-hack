@@ -8,11 +8,12 @@ print "Beginning"
 
 top_depict = df['depicts'].value_counts().rename_axis('unique_depicts').reset_index(name='counts').head(10)
 
-cat_count = int(top_depict['counts'].tail(1)) #set to minimum count of the depicts
+image_count_per_depict = int(top_depict['counts'].tail(1)) #set to minimum count of the depicts
 home_dir_name = os.path.dirname(__file__)
 
 for depict in top_depict['unique_depicts']:
-    cat_df = df.loc[df['depicts'] == depict].head(cat_count)
+    i = 1
+    cat_df = df.loc[df['depicts'] == depict].head(image_count_per_depict)
     for index, row in cat_df.iterrows():
         url = row["image"]
         extension = url.rsplit('.', 1)[1]
@@ -31,5 +32,9 @@ for depict in top_depict['unique_depicts']:
                 open(file_name, 'wb').write(r.content)
             except OSError:
                 print 'Error: Failed downloading ' +  url
+        
+        i = i + 1
+        if i%50 == 0:
+            print 'Progress : ' + depict + ' ===  ' + i + '/' + image_count_per_depict
 
 print "Completed! YEY!!!!"
