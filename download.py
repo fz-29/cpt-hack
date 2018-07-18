@@ -35,6 +35,6 @@ for depict in top_depict['unique_depicts']:
         
         i = i + 1
         if i%50 == 0:
-            print 'Progress : ' + depict + ' ===  ' + str(i) + '/' + image_count_per_depict
+            print 'Progress : ' + depict + ' ===  ' + str(i) + '/' + str(image_count_per_depict)
 
 print "Completed! YEY!!!!"
