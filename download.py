@@ -31,3 +31,5 @@ for depict in top_depict['unique_depicts']:
                 open(file_name, 'wb').write(r.content)
             except OSError:
                 print 'Error: Failed downloading ' +  url
+
+print "Completed! YEY!!!!"
